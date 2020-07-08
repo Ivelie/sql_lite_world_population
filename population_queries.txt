@@ -1,0 +1,47 @@
+SELECT COUNT(*)
+FROM countries
+WHERE continent = 'Africa';
+
+SELECT SUM(population)
+FROM population_years
+JOIN countries
+	ON population_years.country_id = countries.id
+	WHERE continent = 'Oceania' 
+		AND year = 2005;
+
+SELECT ROUND(AVG(population), 0), countries.name
+FROM population_years
+JOIN countries
+ON population_years.country_id = countries.id
+WHERE continent = 'South America' 
+AND year = 2003
+GROUP BY 2;
+
+SELECT countries.name, MIN(population)
+FROM population_years
+JOIN countries
+ON population_years.country_id = countries.id
+WHERE year = 2007;
+-- Niue	0.00216
+
+SELECT ROUND(AVG(population), 2) AS 'AVG Polish Population'
+FROM population_years
+JOIN countries
+ON population_years.country_id = countries.id
+WHERE countries.name = 'Poland';
+-- answer 38.56
+
+SELECT COUNT(*) AS "countries with 'The' in their name"
+FROM countries
+WHERE name LIKE '%The%';
+-- answer  4
+
+SELECT ROUND(SUM(population), 0), countries.continent
+FROM population_years
+JOIN countries
+ON population_years.country_id = countries.id
+WHERE year = 2010
+GROUP BY 2
+ORDER BY 1 DESC;
+
+
